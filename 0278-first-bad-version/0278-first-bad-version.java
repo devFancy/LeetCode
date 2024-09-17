@@ -1,22 +1,16 @@
-/* The isBadVersion API is defined in the parent class VersionControl.
-      boolean isBadVersion(int version); */
-
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
+        int start = 1, end = n;
         
-        int start = 1;
-        int end = n;
-        int mid = 0;
-        
-        while(start < end) {
-            mid = start + (end - start) /2;
-            if(isBadVersion(mid)) { // If Currently version is fail,
-                end = mid;
-            }
-            else  { // If Cunrrently version is true
-                start = mid + 1; // 
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (isBadVersion(mid)) {
+                end = mid; // bad version이 발견되면, end를 mid로 갱신
+            } else {
+                start = mid + 1; // mid가 good version이면, start를 mid+1로 갱신
             }
         }
-        return start;
+        
+        return start; // 첫 번째 bad version을 반환
     }
 }
