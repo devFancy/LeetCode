@@ -4,23 +4,25 @@ class Solution {
         Set<Character>[] cols = new HashSet[9];
         Set<Character>[] boxes = new HashSet[9];
 
-        for (int i = 0; i < 9; i++) {
+
+        for(int i = 0; i < 9; i++) {
             rows[i] = new HashSet<>();
             cols[i] = new HashSet<>();
             boxes[i] = new HashSet<>();
         }
 
-        for (int r = 0; r < 9; r++) {
-            for(int c = 0; c < 9; c++) {
-                char num = board[r][c];
+        for(int row = 0; row < 9; row++) {
+
+            for(int col = 0; col < 9; col++) {
+                char num = board[row][col];
 
                 if (num == '.') {
                     continue;
                 }
 
-                int boxIndex = (r / 3) * 3 + (c / 3);
+                int boxIndex = (row / 3) * 3 + (col / 3);
 
-                if (!rows[r].add(num) || !cols[c].add(num) || !boxes[boxIndex].add(num)) {
+                if(!rows[row].add(num) || !cols[col].add(num) || !boxes[boxIndex].add(num)) {
                     return false;
                 }
             }
